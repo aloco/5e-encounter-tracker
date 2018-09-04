@@ -1,8 +1,8 @@
 {
-  "name": "5e-initiative-tracker",
+  "name": "5e-encounter-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://aloco.github.io/5e-initiative-tracker",
+  "homepage": "http://aloco.github.io/5e-encounter-tracker",
   "dependencies": {
     "@types/reactstrap": "^6.0.2",
     "bootstrap": "^4.1.3",
