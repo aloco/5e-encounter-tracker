@@ -4,9 +4,9 @@ import InitiativeTracker from './components/InitiativeTracker';
 
 // declare icons
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faClone, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faClone, faTrash, faChevronCircleLeft, faChevronCircleRight, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faClone, faTrash);
+library.add(faClone, faTrash, faChevronCircleLeft, faChevronCircleRight, faPlusCircle);
 
 class App extends React.Component {
   public render() {

@@ -53,8 +53,8 @@ class InitiativeListRow extends React.Component<IInitiativeListRowProps, {}> {
         const highlightedBackground = this.props.isCurrent ? "bg-light" : "";
 
         return (
-            <Row className={highlightedBackground}>
-                <Col>
+            <Row className={highlightedBackground + " initiative-list-row"}>
+                <Col md={1}>
                     <input
                         type="text"
                         name="initiative"
@@ -63,40 +63,40 @@ class InitiativeListRow extends React.Component<IInitiativeListRowProps, {}> {
                         onChange={this.initiativeChanged}
                     />
                 </Col>
-                <Col>
+                <Col md={4}>
                     <input 
                         type="text" 
                         name="name" 
-                        placeholder="Insert name" 
+                        // placeholder="Insert name" 
                         className="name-textfield" 
                         value={this.props.entry.name} 
                         onChange={this.nameChanged} 
                     />
                 </Col>
-                <Col>
+                <Col md={5}>
                     <Textarea 
+                        minRows={1}
                         value={this.props.entry.freeText} 
                         onChange={this.freeTextChanged} 
-                        placeholder="Add text (conditions, notes, etc.)" 
+                        // placeholder="Insert conditions, notes etc."
                     />
                 </Col>
-                <Col>
+                <Col md={2}>
                     <Row>
-                        <Col>
+                        <Col className="action-button-container">
                             <button 
                                 type="button" 
                                 onClick={this.duplicatePressed} 
-                                className="close" 
+                                className="clear-button action-button text-dark" 
                                 aria-label="Duplicate">
-                                    <FontAwesomeIcon icon="clone" />
+                                    <FontAwesomeIcon size={"1x"} icon="clone" />
                             </button>
-                        </Col>
-                        <Col>
                             <button 
                                 type="button" 
                                 onClick={this.removePressed} 
-                                className="close" aria-label="Close">
-                                <FontAwesomeIcon icon="trash" />
+                                className="clear-button action-button text-dark" 
+                                aria-label="Close">
+                                <FontAwesomeIcon size={"1x"} icon="trash" />
                             </button>
                         </Col>
                     </Row>

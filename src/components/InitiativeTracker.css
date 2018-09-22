@@ -1,8 +1,60 @@
+.list-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid #c9c9c9;
+}
+
 
 .round-badge {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
     vertical-align: middle;
     display: inline-block;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    margin: 0px 10px;
+    text-align: center;
+}
+
+
+
+.round-title, .initiative-title {
+    font-size: 1.5rem;
+}
+.initiative-title {
+    margin: 0 10px;
+}
+.round-info-container span, .round-info-container div, .round-info-container svg, .add-initiative-container span, .add-initiative-container svg {
+    display: inline-block;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.elapsed-time, .round-info-container {
+    text-align: left;
+}
+.elapsed-time span {
+    margin: 0 2px;
+}
+
+span.elapsed-time-value {
+    margin-right: 0px;
+    font-size: 1.5rem;
+}
+span.elapsed-time-unit {
+    margin-left: 0px;
+    font-size: 1.0rem;
+}
+
+.btn-initiative-progress {
+    margin: 0 2px;
+}
+.initiative-arrows {
+    display: inline-block;
+    margin: 0 0 0 10px;
+}
+
+.add-initiative-container, .initiative-controls-container {
+    text-align: right;
 }
