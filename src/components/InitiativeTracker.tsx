@@ -36,20 +36,36 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
         return elapsedMinutes + "m " + elapsedSeconds + "s";
     }
 
+    public previousInitiative = () => {
+        // go to previous round if start of the list is reached
+        if (this.state.currentInitiativeIndex === 0) {
+            const currentRound = this.state.currentRound - 1;
+            this.setState({
+                ...this.state,
+                currentRound: currentRound > 0 ? currentRound : 1, // don´t allow negative or zero rounds
+                currentInitiativeIndex: currentRound > 0 ? this.state.currentItems.length - 1 : this.state.currentInitiativeIndex
+            });
+        } else {
+            this.setState({ ...this.state,
+                currentInitiativeIndex: this.state.currentInitiativeIndex - 1
+            });
+        }
+    }
+
     public nextInitiative = () => {
+        // start next round if last item in list is reached
         if (this.state.currentInitiativeIndex === this.state.currentItems.length - 1) {
             const currentRound = this.state.currentRound + 1;
             this.setState({
                 ...this.state,
                 currentRound,
-                currentInitiativeIndex: 0
+                currentInitiativeIndex: 0 // jump to first entry
             });
-            return;
+        } else {
+            this.setState({ ...this.state,
+                currentInitiativeIndex: this.state.currentInitiativeIndex + 1
+            });
         }
-
-        this.setState({ ...this.state,
-            currentInitiativeIndex: this.state.currentInitiativeIndex + 1
-        });
     }
 
     public addNewItem = () => {
@@ -142,6 +158,9 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
                     <Col>
                         <Button color="primary" onClick={this.nextInitiative}>
                             Next Initiative
+                        </Button>
+                        <Button color="primary" onClick={this.previousInitiative}>
+                            Prev Initiative
                         </Button>
                     </Col>
                     <Col>
