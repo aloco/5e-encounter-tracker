@@ -29,7 +29,7 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
     }
 
     public getElapsedTime = () => {
-        const tempElapsedSeconds = this.state.currentRound * 6;
+        const tempElapsedSeconds = (this.state.currentRound - 1) * 6;
 
         const elapsedMinutes = Math.floor(tempElapsedSeconds / 60);
         const elapsedSeconds = tempElapsedSeconds - elapsedMinutes * 60;
