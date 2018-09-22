@@ -5,11 +5,14 @@ This is another very basic DnD 5e Initiative Tracker. It´s built around the nee
 [Click here](https://aloco.github.io/5e-encounter-tracker/) to see this tool in action and leave me some feedback. 
 
 ## Todos
-
+- [X] add current round counter and display elapsed time
+- [X] add basic fields for encounter items
+- [X] add remove and duplicate items
 - [ ] add redux for state management
 - [ ] make state persistent in browser storage
 - [ ] add history back function
 - [ ] add creature conditions
+- [ ] improve mobile experience
 - [ ] ... ?
 
 ## Installation
