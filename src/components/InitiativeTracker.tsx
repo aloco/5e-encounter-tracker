@@ -3,6 +3,8 @@ import './InitiativeTracker.css';
 import { Button, Container, Row, Col } from 'reactstrap';
 import { IInitiatveEntry } from './../types/InitiativeEntry';
 import InitiativeListRow from "./InitiativeListRow";
+import { Guid } from "guid-typescript";
+
 
 interface IInitiativeTrackerState {
     currentItems: IInitiatveEntry[];
@@ -44,69 +46,85 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
             });
             return;
         }
-        const nextInitiative = this.state.currentInitiativeIndex + 1;
-        this.setState({
-            ...this.state,
-            currentInitiativeIndex: nextInitiative
+
+        this.setState({ ...this.state,
+            currentInitiativeIndex: this.state.currentInitiativeIndex + 1
         });
     }
 
-    public addNewRow = () => {
-
+    public addNewItem = () => {
         const newEntry: IInitiatveEntry = {
+            id: Guid.create().toString(),
+            freeText: "",
             name: "",
             initiative: 0
         }
-        const newItems = this.state.currentItems;
-        newItems.push(newEntry);
-        this.setState({
-            ...this.state,
-            currentItems: newItems
+
+        this.setState({ ...this.state,
+            currentItems: this.state.currentItems.concat(newEntry)
         });
     }
 
 
-    public nameChanged = (index: number, name: string) => {
-        const newList = this.state.currentItems.map((entry, currentIndex) => {
-            if (currentIndex === index) {
-                entry.name = name
+    public itemChanged = (item: IInitiatveEntry) => {
+
+        const updatedArray = this.state.currentItems.map((entry) => {
+            if (entry.id === item.id) {
+                return item;
+            } else {
+                return entry;
             }
-            return entry;
         });
-        this.setState({
-            ...this.state,
-            currentItems: newList
+
+        // update list with new item
+        this.setState({ ...this.state, 
+            currentItems: this.sortListByInitiative(updatedArray)
+        });
+    } 
+
+    public removeEntry = (id: string) => {
+        this.setState({ ...this.state,
+            currentItems: this.state.currentItems.filter((entry) => {
+                return id !== entry.id;
+            })
         });
     }
 
-    public initiativeChanged = (index: number, initiative: number) => {
-        const newList = this.state.currentItems.map((entry, currentIndex) => {
-            if (currentIndex === index) {
-                entry.initiative = initiative
-            }
-            return entry;
-        });
-        this.setState({
-            ...this.state,
-            currentItems: newList
-        });
+    public duplicateEntry = (id: string) => {
+        // copy object
+        const item = { ...this.state.currentItems.find((entry) => {
+            return entry.id === id;
+        })} as IInitiatveEntry;
+   
+        if (item !== undefined) {
+            // create new id
+            item.id = Guid.create().toString();
+            this.setState({ ...this.state, 
+                currentItems: this.state.currentItems.concat(item)
+            });
+        }
     }
 
-    public removePressed = (index: number) => {
-        const items = this.state.currentItems.filter((entry, currentIndex) => {
-            return index !== currentIndex;
+    public sortListByInitiative = (items: IInitiatveEntry[]): IInitiatveEntry[] => {
+        return items.sort((a, b) => {
+            if (a.initiative > b.initiative) { return -1 };
+            if (a.initiative < b.initiative) { return 1 };
+            return 0;
         });
-        this.setState({
-            ...this.state,
-            currentItems: items
-        })
     }
 
     public renderList = () => {
-        const a =  this.state.currentItems.map((item, currentIndex) => {
-            return <InitiativeListRow entry={item} index={currentIndex} removePressed={(index) => { this.removePressed(index);}} isCurrent={currentIndex === this.state.currentInitiativeIndex} key={currentIndex} nameChanged={(name) => { this.nameChanged(currentIndex, name);}} initiativeChanged={(initiative) => { this.initiativeChanged(currentIndex, initiative);}}/>
+        return this.state.currentItems.map((item, currentIndex) => {
+            return <InitiativeListRow 
+                key={item.id} 
+                entry={item} 
+                index={currentIndex} 
+                removePressed={this.removeEntry} 
+                duplicatePressed={this.duplicateEntry}
+                isCurrent={currentIndex === this.state.currentInitiativeIndex} 
+                itemChanged={this.itemChanged}
+            />
         });
-        return a;
     }
 
     public render() {
@@ -137,7 +155,7 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
                 </Row>
                 <Row>
                     <Col>
-                        <Button color="primary" onClick={this.addNewRow}>
+                        <Button color="primary" onClick={this.addNewItem}>
                             Add new entry
                         </Button>
                     </Col>

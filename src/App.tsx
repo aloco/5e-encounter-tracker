@@ -2,6 +2,12 @@ import * as React from 'react';
 import './App.css';
 import InitiativeTracker from './components/InitiativeTracker';
 
+// declare icons
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faClone, faTrash } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faClone, faTrash);
+
 class App extends React.Component {
   public render() {
     return (
