@@ -81,11 +81,13 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
             id: Guid.create().toString(),
             freeText: "",
             name: "",
-            initiative: 0
+            initiative: 0,
+            armorClass: 0,
+            hitpoints: 0
         }
 
         this.setState({ ...this.state,
-            currentItems: this.state.currentItems.concat(newEntry)
+            currentItems: this.sortListByInitiative(this.state.currentItems.concat(newEntry))
         });
     }
 
@@ -107,10 +109,19 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
     } 
 
     public removeEntry = (id: string) => {
+
+        const newList = this.state.currentItems.filter((entry) => {
+            return id !== entry.id;
+        });
+        let index = this.state.currentInitiativeIndex;
+        if (this.state.currentInitiativeIndex >= newList.length) {
+            const newIndex = newList.length - 1;
+            index = newIndex > 0 ? newIndex : 0;
+        }
+
         this.setState({ ...this.state,
-            currentItems: this.state.currentItems.filter((entry) => {
-                return id !== entry.id;
-            })
+            currentItems: this.sortListByInitiative(newList),
+            currentInitiativeIndex: index
         });
     }
 
@@ -124,7 +135,7 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
             // create new id
             item.id = Guid.create().toString();
             this.setState({ ...this.state, 
-                currentItems: this.state.currentItems.concat(item)
+                currentItems: this.sortListByInitiative(this.state.currentItems.concat(item))
             });
         }
     }
@@ -143,12 +154,18 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
         (
             <Row key="header" className="list-header">
                 <Col md={1}>
-                    Initiative
+                    IN
                 </Col>
-                <Col md={4}>
+                <Col md={1}>
+                    AC
+                </Col>
+                <Col md={1}>
+                    HP
+                </Col>
+                <Col md={3}>
                     Name
                 </Col>
-                <Col md={5}>
+                <Col md={4}>
                     Notes
                 </Col>
                 <Col md={2}>

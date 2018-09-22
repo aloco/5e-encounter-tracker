@@ -8,15 +8,26 @@
 .current-index .initiative-textfield {
     background-color: white;
 }
+.current-index .hitpoints-textfield {
+    background-color: white;
+}
+.current-index .armor-class-textfield {
+    background-color: white;
+}
 
 
-.initiative-textfield {
+.initiative-textfield, .armor-class-textfield, .hitpoints-textfield {
     width: 40px;
     height: 40px;
     text-align: center;
     border: 0;
     border-radius: 20px;
     background-color: #f8f9fa;
+}
+
+input.hitpoints-textfield {
+    width: 70px;
+
 }
 
 .name-textfield {

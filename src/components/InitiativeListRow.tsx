@@ -26,15 +26,14 @@ class InitiativeListRow extends React.Component<IInitiativeListRowProps, {}> {
     public nameChanged = (event: any) => {
         this.props.itemChanged({ ...this.props.entry, name: event.target.value });
     }
+    public armorClassChanged = (event: any) => {
+        this.props.itemChanged({ ...this.props.entry, armorClass: this.parseNumber(event.target.value, this.props.entry.armorClass) });
+    }
+    public hitpointsChanged = (event: any) => {
+        this.props.itemChanged({ ...this.props.entry, hitpoints: this.parseNumber(event.target.value, this.props.entry.hitpoints) });
+    }
     public initiativeChanged = (event: any) => {
-        const initiativeNumber = Number(event.target.value);
-
-        // keep value if input is no number
-        if (isNaN(initiativeNumber)) {
-            this.props.itemChanged({ ...this.props.entry, initiative: this.props.entry.initiative });
-        } else {
-            this.props.itemChanged({ ...this.props.entry, initiative: initiativeNumber });
-        }
+        this.props.itemChanged({ ...this.props.entry, initiative: this.parseNumber(event.target.value, this.props.entry.initiative) });
     }
     public freeTextChanged = (event: any) => {
         this.props.itemChanged({ ...this.props.entry, freeText: event.target.value });
@@ -63,7 +62,25 @@ class InitiativeListRow extends React.Component<IInitiativeListRowProps, {}> {
                         onChange={this.initiativeChanged}
                     />
                 </Col>
-                <Col md={4}>
+                <Col md={1}>
+                    <input
+                        type="text"
+                        name="armorClass"
+                        className="armor-class-textfield"
+                        value={this.props.entry.armorClass}
+                        onChange={this.armorClassChanged}
+                    />
+                </Col>
+                <Col md={1}>
+                    <input
+                        type="text"
+                        name="hitpoints"
+                        className="hitpoints-textfield"
+                        value={this.props.entry.hitpoints}
+                        onChange={this.hitpointsChanged}
+                    />
+                </Col>
+                <Col md={3}>
                     <input 
                         type="text" 
                         name="name" 
@@ -73,7 +90,7 @@ class InitiativeListRow extends React.Component<IInitiativeListRowProps, {}> {
                         onChange={this.nameChanged} 
                     />
                 </Col>
-                <Col md={5}>
+                <Col md={4}>
                     <Textarea 
                         minRows={1}
                         value={this.props.entry.freeText} 
@@ -103,6 +120,15 @@ class InitiativeListRow extends React.Component<IInitiativeListRowProps, {}> {
                 </Col>
             </Row>
         );
+    }
+
+    private parseNumber(value: any, defaultValue: number) {
+        const num = Number(value);
+        if (isNaN(num)) {
+            return defaultValue;
+        } else {
+            return num;
+        }
     }
 }
 
