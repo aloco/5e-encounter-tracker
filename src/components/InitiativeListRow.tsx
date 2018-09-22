@@ -50,7 +50,7 @@ class InitiativeListRow extends React.Component<IInitiativeListRowProps, {}> {
     }
 
     public render() {
-        const highlightedBackground = this.props.isCurrent ? "bg-light" : "";
+        const highlightedBackground = this.props.isCurrent ? "bg-light current-index" : "";
 
         return (
             <Row className={highlightedBackground + " initiative-list-row"}>

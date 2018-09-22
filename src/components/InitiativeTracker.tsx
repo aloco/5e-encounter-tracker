@@ -174,7 +174,7 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
     public render() {
         return (
             <Container>
-                <Row>
+                <Row className="header-row">
                     <Col>
                         <div className="round-info-container">
                             <span className="round-title"> Round </span>
@@ -194,7 +194,7 @@ class InitiativeTracker extends React.Component<{}, IInitiativeTrackerState> {
                         </button>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="header-row">
                     <Col className="elapsed-time">
                         <span className="elapsed-time-title"> Elapsed Time </span>
                         {this.getElapsedTime()}
