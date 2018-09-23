@@ -29,6 +29,12 @@ class App extends React.Component {
                   Made with love but without dice | © 2018 Andreas Tinoco Lobo | MIT | <a href="https://github.com/aloco/5e-encounter-tracker" className="text-light">See project on Github</a>
                 </Col>
               </Row>
+              <Row>
+                <Col>
+                  Favicon made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp" className="text-light">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon" className="text-light">www.flaticon.com</a> | licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" className="text-light">CC 3.0 BY</a>
+                </Col>
+              </Row>
+
             </Container>
           </footer>
         </div>
