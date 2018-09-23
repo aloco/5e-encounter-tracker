@@ -2,6 +2,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  min-height: 100vh;
+}
+
+html {
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 .clear-button {

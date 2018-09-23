@@ -5,9 +5,6 @@
     text-align: left;
 }
 
-div.header-row {
-    margin-top: 10px;
-}
 .round-badge {
     width: 40px;
     height: 40px;
@@ -20,6 +17,9 @@ div.header-row {
     text-align: center;
 }
 
+.header-row {
+    padding: 10px 0;
+}
 
 .round-title, .initiative-title {
     font-size: 1.5rem;

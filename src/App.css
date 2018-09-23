@@ -1,34 +1,42 @@
 .App {
+  min-height: 100vh;
   text-align: center;
-}
-
-.App-header {
-  background-color: #222;
-  height: 100px;
-  color: white;
-}
-
-.App-title {
-  line-height: 100px;
-  vertical-align: middle;
-  font-size: 1.5em;
-  text-transform: uppercase;
 }
 
 .App-intro {
   font-size: large;
 }
 
-
-.app-section {
-  position: relative;
-  padding-bottom: 80px;
+main {
+  min-height: calc(100vh - 2.5rem - 5rem);
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
+  min-height: 2.5em;
+}
+
+footer .col {
+  min-height: 2.5em;
+  line-height: 2.5em;
+}
+
+footer a {
+  text-decoration: underline;
+}
+
+header {
+  height: 5rem;
+  background-color: #222;
+  color: white;
+}
+
+.App-title {
+  line-height: 5rem;
+  vertical-align: middle;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+.app-section {
+  padding: 10px 0;
 }
